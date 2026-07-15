@@ -22,3 +22,17 @@ spec:
           value: root123
         - name: MYSQL_DATABASE
           value: onlinebookstore
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+spec:
+  selector:
+    app: mysql
+  ports:
+  - port: 3306
+    targetPort: 3306
