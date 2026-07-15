@@ -4,19 +4,23 @@ metadata:
   name: book-store
   labels:
     app: book-store
+
 spec:
   replicas: 4
+
   selector:
     matchLabels:
       app: book-store
+
   template:
     metadata:
       labels:
         app: book-store
+
     spec:
       containers:
       - name: book-store
-        image: abhishek0259/book-store
+        image: abhishek0259/book-store:latest
         ports:
         - containerPort: 8080
 
@@ -24,13 +28,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: myweb-service
+  name: book-store-service
+
 spec:
   type: NodePort
+
   selector:
-    app: myweb
+    app: book-store
+
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-      nodePort: 30007
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+    nodePort: 30007
